@@ -12,8 +12,6 @@ int main(void)
 void Logger(const char* message)
 {
     FILE* fptr;
-    time_t current_time;
-    char* c_time_string;
     char* fullMsg;
 
     // Create a file.
@@ -48,8 +46,6 @@ void Logger(const char* message)
 void ErrorLogger(const char* message, int errorNum)
 {
     FILE* fptr;
-    time_t current_time;
-    char* c_time_string;
     char* fullMsg;
 
     // Create a file.
