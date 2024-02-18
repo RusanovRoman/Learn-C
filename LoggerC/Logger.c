@@ -20,13 +20,10 @@ void Logger(const char* message)
     fptr = fopen("Log.txt", "w");
     if (fptr != NULL) {
         //fptr = fopen("C:\directoryname\Log.txt", "w");
-        // Obtain current time. 
-        current_time = time(NULL);
-        // Convert to local time format. 
-        c_time_string = ctime(&current_time);
-        c_time_string[strcspn(c_time_string, "\n")] = 0;
         // Create string with message. 
-        fullMsg = concat("In ", c_time_string);
+        fullMsg = concat("In ", __TIME__);
+        fullMsg = concat(fullMsg, " ");
+        fullMsg = concat(fullMsg, __DATE__);
         fullMsg = concat(fullMsg, ". ");
         fullMsg = concat(fullMsg, message);
         // Sent string to file.
@@ -59,16 +56,13 @@ void ErrorLogger(const char* message, int errorNum)
     fptr = fopen("Error.txt", "w");
     if (fptr != NULL) {
         //fptr = fopen("C:\directoryname\Error.txt", "w");
-        // Obtain current time. 
-        current_time = time(NULL);
-        // Convert to local time format. 
-        c_time_string = ctime(&current_time);
-        c_time_string[strcspn(c_time_string, "\n")] = 0;
         //Convert int errorNum to char* charNum.
         char* charNum = "";
         itoa(errorNum, charNum, 10);
         // Create string with message. 
-        fullMsg = concat("In ", c_time_string);
+        fullMsg = concat("In ", __TIME__);
+        fullMsg = concat(fullMsg, " ");
+        fullMsg = concat(fullMsg, __DATE__);
         fullMsg = concat(fullMsg, ". Error: ");
         fullMsg = concat(fullMsg, message);
         fullMsg = concat(fullMsg, ". Error code: ");
