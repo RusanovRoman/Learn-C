@@ -1,4 +1,4 @@
-﻿#include "Logger.h"
+#include "Logger.h"
 
 int main(void)
 {
@@ -12,10 +12,10 @@ int main(void)
 void Logger(const char* message)
 {
     FILE* fptr;
-
+    errno_t errNum;
     // Create a file.
-    fptr = fopen("Log.txt", "w");
-    if (fptr != NULL) {
+    errNum = fopen_s(&fptr,"Log.txt", "w");
+    if (errNum == NULL) {
         //fptr = fopen("C:\directoryname\Log.txt", "w");
         // Sent string to file.
         fprintf(fptr, "In %s %s. %s", __TIME__, __DATE__, message);
@@ -37,10 +37,10 @@ void Logger(const char* message)
 void ErrorLogger(const char* message, int errorNum)
 {
     FILE* fptr;
-
+    errno_t errNum;
     // Create a file.
-    fptr = fopen("Error.txt", "w");
-    if (fptr != NULL) {
+    errNum = fopen_s(&fptr, "Error.txt", "w");
+    if (errNum == NULL) {
         //fptr = fopen("C:\directoryname\Error.txt", "w");
         // Sent string to file.
         fprintf(fptr, "In %s %s. Error: %s. Error code: %d.",
@@ -49,3 +49,4 @@ void ErrorLogger(const char* message, int errorNum)
         fclose(fptr);
     }
 }
+
